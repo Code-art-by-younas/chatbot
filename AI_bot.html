@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot - M Younas</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #0f0f0f;
+        color: white;
+    }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+    .sidebar {
+        width: 20%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+    }
+    .chat-section {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        padding: 20px;
+    }
+    .messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+    .input-area {
+        display: flex;
+        gap: 10px;
+    }
+    input {
+        flex-grow: 1;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        outline: none;
+        color: white;
+        border-radius: 10px;
+    }
+    button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    .message {
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        width: fit-content;
+        max-width: 70%;
+    }
+    .user-message {
+        margin-left: auto;
+        background-color: rgba(100, 181, 246, 0.2);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>M Younas Chatbot</h2>
+        <p>Glassmorphism Design</p>
+    </div>
+
+    <div class="chat-section">
+        <div class="messages" id="messages"></div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        const inputField = document.getElementById("userInput");
+        const messageText = inputField.value;
+        if (!messageText) return;
+
+        const messageContainer = document.createElement("div");
+        messageContainer.classList.add("message", "user-message");
+        messageContainer.textContent = messageText;
+
+        document.getElementById("messages").appendChild(messageContainer);
+
+        inputField.value = "";
+
+        setTimeout(() => {
+            botReply("M Younas: I am here to help you!");
+        }, 1000);
+    }
+
+    function botReply(message) {
+        const messageContainer = document.createElement("div");
+        messageContainer.classList.add("message");
+        messageContainer.textContent = message;
+
+        document.getElementById("messages").appendChild(messageContainer);
+    }
+</script>
+
+</body>
+</html>
